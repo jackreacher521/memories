@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Songs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #fdf6e4;
+            color: #444;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            padding: 20px;
+        }
+        h1 {
+            color: #ff6f61;
+            font-size: 2rem;
+        }
+        .song-list {
+            list-style: none;
+            padding: 0;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+        .song-list li {
+            margin: 15px 0;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .song-list a {
+            text-decoration: none;
+            color: #1e90ff;
+            flex-grow: 1;
+            text-align: left;
+            transition: color 0.3s;
+        }
+        .song-list a:hover {
+            color: #ff6f61;
+        }
+        .song-list .status {
+            font-size: 1.2rem;
+            color: #28a745;
+            display: none; /* Initially hidden */
+            margin-left: 10px;
+        }
+        #message {
+            display: none;
+            margin-top: 40px;
+            font-size: 20px;
+            color: #333;
+            animation: fadeIn 1s ease-in-out;
+        }
+        #message span {
+            color: #ff6f61;
+            font-weight: bold;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        @media (max-width: 768px) {
+            .song-list li {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Our Songs 🎶</h1>
+        <p>Click on each song below and enjoy the memories we created together.</p>
+        <ul class="song-list" id="songList" role="list">
+            <li role="listitem"><a href="https://youtu.be/0KozfDYK1EU" target="_blank" aria-label="Listen to Dagabaaz Re">Dagabaaz Re</a> <span class="status">✔</span></li>
+            <li role="listitem"><a href="https://youtu.be/KLYwt0YmQw8" target="_blank" aria-label="Listen to Zehnaseeb">Zehnaseeb</a> <span class="status">✔</span></li>
+            <li role="listitem"><a href="https://youtu.be/5FU5j_DvZPg" target="_blank" aria-label="Listen to Mere Humsafar">Mere Humsafar</a> <span class="status">✔</span></li>
+            <li role="listitem"><a href="https://youtu.be/c2gSzYLJ8sY" target="_blank" aria-label="Listen to Ishq Bulaava">Ishq Bulaava</a> <span class="status">✔</span></li>
+            <li role="listitem"><a href="https://youtu.be/B7SkAq_94J8" target="_blank" aria-label="Listen to Pehla Pyaar">Pehla Pyaar</a> <span class="status">✔</span></li>
+            <li role="listitem"><a href="https://youtu.be/KBIq11mNB0I" target="_blank" aria-label="Listen to Malang">Malang</a> <span class="status">✔</span></li>
+            <li role="listitem"><a href="https://youtu.be/hJBHSmyqv0Y" target="_blank" aria-label="Listen to Humraah">Humraah</a> <span class="status">✔</span></li>
+            <li role="listitem"><a href="https://youtu.be/zXLgYBSdv74" target="_blank" aria-label="Listen to Ik Vaari Aa">Ik Vaari Aa</a> <span class="status">✔</span></li>
+            <li role="listitem"><a href="https://youtu.be/K-Ts-NFR62o" target="_blank" aria-label="Listen to Jab Tak">Jab Tak</a> <span class="status">✔</span></li>
+            <li role="listitem"><a href="https://youtu.be/NeXbmEnpSz0" target="_blank" aria-label="Listen to Zara Zara Bahekta Hai">Zara Zara Bahekta Hai</a> <span class="status">✔</span></li>
+        </ul>
+        <div id="message">
+            These were the songs we listened to once with a smile on our face, and the reason is our bond and the memories we’ve created. <br>
+            <span>(aacha laga? To call kar k bol na, wait kiska kar rahi hai)</span>
+        </div>
+    </div>
+
+    <script>
+        const songList = document.getElementById('songList');
+        const message = document.getElementById('message');
+        let songsClicked = 0;
+        const totalSongs = songList.children.length;
+
+        // Event delegation for clicks
+        songList.addEventListener('click', (event) => {
+            if (event.target.tagName === 'A') {
+                const songItem = event.target.parentElement;
+                const status = songItem.querySelector('.status');
+                
+                if (status && status.style.display === 'none') {
+                    songsClicked++;
+                    status.style.display = 'inline'; // Mark as listened
+                }
+
+                // Show the final message if all songs are clicked
+                if (songsClicked === totalSongs) {
+                    message.style.display = 'block';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
